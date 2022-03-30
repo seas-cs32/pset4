@@ -45,30 +45,30 @@ Lots of data on the internet is stored in CSV files, and so Python contains a li
 
 **Open** the `step1.py` script. In it, you'll find a `main` routine that calls `load_data` and then runs a few tests on the data structures that `load_data` creates. This routine and its associated data structures are contained in the `degrees32_lib.py` file, and `step1.py` imports them for its use. You don't have to write any code in `step1.py`, but you should read it and make sure you understand how it works.
 
-**You have to write code** in the routine `load_data` in `degree32_lib.py`. We have deleted the code you need to read in the file `movies.csv` and use its data to initialize the Python dictionary `movies`. From skimming the CSV library interface, reading the other code in `load_data` and the test code in `step1.py`, you should be able to figure out what code you need to write.
+**You have to write code** in the routine `load_data` in `degree32_lib.py`. Your code should read in the file `movies.csv` and use its data to initialize the Python dictionary `movies`. Try skimming the CSV library interface, and reading the other code in `load_data` and the test code in `step1.py` for guidance.
 
 **Step 2: Get user input.** In this step, we want to grab the names of two actors and turn them into IMDb person identifiers. Again, we have placed the routine `get_person_id` that accomplishes most of this work in `degrees32_lib.py`, and the `main` routine in script `step2.py` calls it twice as a test.
 
-You know how to be careful with user input from previous psets, and the interesting new aspect here is that we may have to ask the user to help us disambiguate between two actors with the same names. In other words, they've correctly typed an actor's name, but the IMDb files contain several actors with that name, but different ids. This work is done in `get_person_id`, and we've given you a complete, working routine.
+You know how to be careful with user input from previous psets, and the interesting new aspect here is that we may have to ask the user to help us disambiguate between two actors with the same names. In other words, they've correctly typed an actor's name, but the IMDb files contain several actors with that name, but different ids. This work is done in `get_person_id`, which is given as a complete, working routine.
 
 **You have to write** the helper routine `build_names`. To allow you to test your code, the `main` routine in `step2.py` calls `build_names` and runs a small test on the the Python dictionary `names`.
 
 When you get the code working, every actor in the `small` directory should have a single id except for "Emma Watson". If you input her name during the "TEST 4" testing code, the script should ask you to disambiguate between the two ids with this name.
 
-**Step 3: A DFS for a path.** You are now set to write the full goal-directed search.  For this step, you'll use `degrees32.py`. In its `main` routine, you'll find that it calls `load_data` and then `get_person_id`. The actor who starts our search has its id loaded into `start` and the actor who ends our search has its id loaded into `goal`.
+**Step 3: A DFS for a path.** It's time to write the full goal-directed search using the algorithm DFS, or depth-first search. You'll be writing in your search in the routine `find_path` in `degrees32.py`.
 
-The `main` routine then calls `find_path`, which is **what you have to write**. 
+The `main` routine in `degrees32.py` prepares for the goal-dircted search by calling `load_data` and `get_person_id`. Once the data is in place and the start/goal are decided, `main` calls `find_path`, which is **what you have to write**.
 
-The `path` returned from `find_path` is then printed out by the code at the end of `main`. You shouldn't have to change that code, if you create the path correctly.
+`find_path` is set up to take as input a `start` actor's id and `goal` actor's id, and produce as output (or return) the `path` between the `start` actor and `end` actor. The `path` returned from `find_path` is then printed out by the code at the end of `main`. You shouldn't have to change the print-related code, if you create the path as we intend.
 
 We've done a few things to help you get started:
 
 *   You'll find two classes in `degree32_lib.py` that you can use to implement the kind of node and frontier data structures we used in the driving-directions search problem we did together in class.  You shouldn't have to add any code to these data structures or their implementations
 *   The beginning of `find_path` implements a sanity check that verifies the routine was given two different actors, and it initializes the `frontier` object you'll use. You simply need to create the initial `Node` object and loop that works on the objects it finds in the `frontier` until it encounters the goal state or runs out of objects in the `frontier` to process.
-*   Remember that you can return as soon as you find the goal state (i.e., you don't have to put it into the `frontier` if you're script checks as you're putting objects onto the `frontier`).
+*   Remember that you can return as soon as you find the goal state (i.e., you don't have to put it into the `frontier` if your script checks as you're putting objects onto the `frontier`).
 *   Also remember that you should use the `"visited"` key in the dictionaries stored as values in the `people` dictionary to keep track of which states you have already visited.
 
-**Step 4: A BFS for a path.** Congratulations on finding a path from one actor to another! As the last step in this pset, you will now find the **shortest path** from one actor to another, so that you can always win _Six Degrees of Kevin Bacon_ when you play it.
+**Step 4: A BFS for a path.** Congratulations on finding a path from one actor to another! As the last step in this pset, you will now find the **shortest path** from one actor to another using BFS (breadth-first search), so you can always win _Six Degrees of Kevin Bacon_ when you play it.
 
 At the start of `find_path` in `degrees32.py`, you will remember seeing two commented-out lines below the lines that initialized the `frontier`.  Make those five lines look like the following:
 
@@ -80,11 +80,11 @@ At the start of `find_path` in `degrees32.py`, you will remember seeing two comm
     frontier = QueueFrontier()
 ```
 
-Awesome. Now you need to implement the `class QueueFrontier`. Don't worry; it's not hard. It inherits all its methods and data attributes from `class StackFrontier` except one, which it overrides.
+Awesome. Now you need to implement the `class QueueFrontier`. Don't worry; you won't need to write much code. It's very similar to `class StackFrontier`. In fact, it can inherit all its methods and data attributes from `class StackFrontier` except one, which you should override.
 
 **You have to write** the following:
 
-1.   Add `QueueFrontier` to the end of the `import` at the top of `degrees32.py`.
+1.   Add `QueueFrontier` to the end of the `degrees32_lib import` at the top of `degrees32.py`.
 2.   Add `Class QueueFrontier` to the end of `degrees32_lib.py`. Don't forget to specify from which class it is derived.
 3.   Figure out which class method you need to override to make a stack act like a queue.
 4.   Write that method using the `Maze` and `CitySqGrid` classes from class as a template.
