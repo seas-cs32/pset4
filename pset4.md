@@ -55,9 +55,9 @@ You know how to be careful with user input from previous psets, and the interest
 
 When you get the code working, every actor in the `small` directory should have a single id except for "Emma Watson". If you input her name during the "TEST 4" testing code, the script should ask you to disambiguate between the two ids with this name.
 
-**Step 3: A DFS for a path.** It's time to write the full goal-directed search using the algorithm DFS, or depth-first search. You'll be writing your search algorithm in the routine `find_path` in `degrees32.py`.
+**Step 3: A DFS for a path.** It's time to write the full goal-directed search using the algorithm DFS, or depth-first search. You'll be writing in your search in the routine `find_path` in `degrees32.py`.
 
-The `main` routine in `degrees32.py` prepares for the goal-dircted search by calling `load_data` and `get_person_id`. Once the data is in place and the start/goal are decided, `main` calls `find_path`, which is **what you have to write**.
+The `main` routine in `degrees32.py` prepares for the goal-directed search by calling `load_data` and `get_person_id`. Once the data is in place and the start/goal are decided, `main` calls `find_path`, which is **what you have to write**.
 
 `find_path` is set up to take as input a `start` actor's id and `goal` actor's id, and produce as output (or return) the `path` between the `start` actor and `end` actor. The `path` returned from `find_path` is then printed out by the code at the end of `main`. You shouldn't have to change the print-related code, if you create the path as we intend.
 
@@ -90,3 +90,5 @@ Awesome. Now you need to implement the `class QueueFrontier`. Don't worry; you w
 4.   Write that method using the `Maze` and `CitySqGrid` classes from class as a template.
 
 That's it!
+
+**Do you want to try the `large` dataset?**  Simply change the call of `load_data` in `main` from one with no parameters to one with a single string parameter, i.e., `load_data('large')`.  Try running both a DFS and BFS search with the names `Kevin Bacon` (the one with id `102`) and `Marlon Brando`.  It will take a while for your script to process the data files as it begins; they are large!
