@@ -55,7 +55,7 @@ You know how to be careful with user input from previous psets, and the interest
 
 When you get the code working, every actor in the `small` directory should have a single id except for "Emma Watson". If you input her name during the "TEST 4" testing code, the script should ask you to disambiguate between the two ids with this name.
 
-**Step 3: A DFS for a path.** It's time to write the full goal-directed search using the algorithm DFS, or depth-first search. You'll be writing in your search in the routine `find_path` in `degrees32.py`.
+**Step 3: A DFS for a path.** It's time to write the full goal-directed search using the algorithm DFS, or depth-first search. You'll be writing your search algorithm in the routine `find_path` in `degrees32.py`.
 
 The `main` routine in `degrees32.py` prepares for the goal-dircted search by calling `load_data` and `get_person_id`. Once the data is in place and the start/goal are decided, `main` calls `find_path`, which is **what you have to write**.
 
